@@ -74,7 +74,7 @@ function Login() {
 
   return (
     <div
-      className="flex justify-center items-center w-full h-full bg-cover"
+      className="flex justify-center items-center w-full h-full bg-cover h-screen"
       style={{ backgroundImage: `url(${background})` }}
     >
       <div
