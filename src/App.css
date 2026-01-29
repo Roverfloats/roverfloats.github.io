@@ -10,6 +10,7 @@ body{
 .no-tailwind,
 .no-tailwind * {
   all: revert;
+  margin: 0;
 }
 
 #root{

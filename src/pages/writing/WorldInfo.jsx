@@ -4,8 +4,10 @@ import { GetWorldById } from '../../endpoints/Worlds';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteWorldPopup from '../../components/popups/DeleteWorldPopup';
 import StoriesOverview from '../../components/writing/StoriesOverview';
+import { Remarkable } from 'remarkable';
 
 function WorldInfo({reload, setReload, setPopup, setPopupContent}) {
+  var md = new Remarkable();
   const navigate = useNavigate({});
   const {id: worldId} = useParams();
 
@@ -33,8 +35,10 @@ function WorldInfo({reload, setReload, setPopup, setPopupContent}) {
             <p className='text-black dark:text-white'>{worldData.description}</p>
           </div>
 
-          <div className={`flex flex-col items-start p-[20px] border-2 border-[#D0D0D0] dark:border-black rounded-[15px] w-full ${showAll ? "h-auto" : "h-[100px]"}`}>
-            <p className={`${showAll ? "" : "line-clamp-1"} text-black dark:text-white`}>{worldData.content}</p>
+          <div className={`flex flex-col items-start p-[20px] border-2 border-[#D0D0D0] dark:border-black rounded-[15px] text-black dark:text-white w-full ${showAll ? "h-auto" : "h-[100px]"}`}>
+            <div className={`${showAll ? "" : "line-clamp-1"}`}>
+              <p className="no-tailwind" style={{}} dangerouslySetInnerHTML={{ __html: md.render(worldData.content) }}></p>
+            </div>
             <button className='text-[#0096FF] dark:text-[#0065AD] mt-[10px]' onClick={() => setShowAll(!showAll)}>{showAll ? "Show Less -" : "Show More +"}</button>
           </div>
           <div className='flex flex-col md:flex-row w-full items-center md:justify-center mt-[10px] mb-[20px]'>

@@ -4,7 +4,6 @@ import { db } from "../../firebase";
 import { Remarkable } from 'remarkable';
 import { FetchData } from "../../endpoints/General";
 import { AddPage, UpdatePage } from "../../endpoints/Pages";
-
 import PageNav from "./PageNav";
 import DeletePagePopup from "../popups/DeletePagePopup";
 
