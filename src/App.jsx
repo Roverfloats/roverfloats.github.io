@@ -34,6 +34,15 @@ function App() {
   }
 
   useEffect(() => {
+    if(darkMode){
+      document.documentElement.style.backgroundColor = "#171717"
+    }
+    else{
+      document.documentElement.style.backgroundColor = "#ffffff"
+    }
+  }, [darkMode]);
+
+  useEffect(() => {
     Fetch()
   }, [reload]);
 
