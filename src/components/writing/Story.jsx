@@ -10,6 +10,7 @@ function Story({storyData}) {
             <div className="w-full flex flex-col items-center">
                 <div className="text-start text-[25px]">{storyData.title}</div>
                 <div className="text-wrap">{storyData.description}</div>
+                <div className="text-[#DF121B]">{storyData.sensitiveContent ? "Sensitive" : ""}</div>
             </div>
         </button>
     )

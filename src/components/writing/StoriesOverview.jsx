@@ -6,7 +6,7 @@ import { FetchData } from "../../endpoints/General";
 import Story from "./Story";
 import { AddStory } from "../../endpoints/Stories";
 
-function StoriesOverview({ worldId, reload}) {
+function StoriesOverview({ worldId, reload, allowSensitive}) {
     const navigate = useNavigate();
 
     const [writingData, setWritingData] = useState([]);
@@ -36,7 +36,7 @@ function StoriesOverview({ worldId, reload}) {
             <div className="divide-solid divide-y-2 ">
                 <div className="flex flex-wrap justify-center">
                     {
-                        writingData.map((storyData, i) => (
+                        writingData.filter(x => allowSensitive ? x.sensitiveContent || !x.sensitiveContent : !x.sensitiveContent).map((storyData, i) => (
                             <Story key={i} storyData={storyData}/>
                         ))
                     }

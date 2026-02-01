@@ -111,6 +111,7 @@ function App() {
             path="/worldbuilding-collection"
             element={<WorldbuildingCollection
               reload={reload}
+              allowSensitive={allowSensitive}
             />}
           />
 
@@ -135,6 +136,7 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
+              allowSensitive={allowSensitive}
             />}
           />
 

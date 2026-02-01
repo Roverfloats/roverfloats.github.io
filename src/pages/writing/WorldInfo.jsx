@@ -6,7 +6,7 @@ import DeleteWorldPopup from '../../components/popups/DeleteWorldPopup';
 import StoriesOverview from '../../components/writing/StoriesOverview';
 import { Remarkable } from 'remarkable';
 
-function WorldInfo({reload, setReload, setPopup, setPopupContent}) {
+function WorldInfo({reload, setReload, setPopup, setPopupContent, allowSensitive}) {
   var md = new Remarkable();
   const navigate = useNavigate({});
   const {id: worldId} = useParams();
@@ -61,7 +61,7 @@ function WorldInfo({reload, setReload, setPopup, setPopupContent}) {
         </div>
 
         <div>
-          <StoriesOverview worldId={worldId} reload={reload}/>
+          <StoriesOverview worldId={worldId} reload={reload} allowSensitive={allowSensitive}/>
         </div>
       </div>
     </>

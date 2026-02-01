@@ -10,6 +10,7 @@ function World({worldData}) {
             <div className="w-full flex flex-col items-center">
                 <div className="text-start text-[25px]">{worldData.title}</div>
                 <div className="text-wrap">{worldData.description}</div>
+                <div className="text-[#DF121B]">{worldData.sensitiveContent ? "Sensitive" : ""}</div>
             </div>
         </button>
     )

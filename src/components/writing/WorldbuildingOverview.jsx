@@ -5,7 +5,7 @@ import { db } from "../../firebase";
 import { FetchData } from "../../endpoints/General";
 import World from "./World";
 
-function WorldbuildingOverview({reload}) {
+function WorldbuildingOverview({reload, allowSensitive}) {
     const navigate = useNavigate();
 
     const [writingData, setWritingData] = useState([]);
@@ -13,7 +13,7 @@ function WorldbuildingOverview({reload}) {
     useEffect(() => {
         async function Fetch(){
             let q = collection(db, "Worldbuilding");
-            q = query(q,);
+            q = query(q);
             setWritingData(await FetchData(q));
         }
         Fetch();
@@ -27,7 +27,7 @@ function WorldbuildingOverview({reload}) {
             <div className="divide-solid divide-y-2 ">
                 <div className="flex flex-wrap justify-center">
                     {
-                        writingData.map((worldData, i) => (
+                        writingData.filter(x => allowSensitive ? x.sensitiveContent || !x.sensitiveContent : !x.sensitiveContent).map((worldData, i) => (
                             <World key={i} worldData={worldData}/>
                         ))
                     }

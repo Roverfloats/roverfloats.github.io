@@ -5,11 +5,23 @@ import { UpdateAllowSensitive, UpdateDarkmode } from '../endpoints/Settings';
 function Settings({ settingsData, setReload }) {
   const [darkModeSetting, setDarkModeSetting] = useState(false);
   const [allowSensitiveSetting, setAllowSensitiveSetting] = useState(false);
+  const [settingsUpdated, setSettingsUpdated] = useState(false);
 
   async function UpdateSettings() {
     await UpdateDarkmode(darkModeSetting);
     await UpdateAllowSensitive(allowSensitiveSetting)
     setReload(prev => !prev);
+    ShowNotifText()
+  }
+
+  async function ShowNotifText() {
+    setSettingsUpdated("Settings Updated!")
+    await timeout(3000);
+    setSettingsUpdated("")
+  }
+
+  function timeout(delay) {
+    return new Promise( res => setTimeout(res, delay) );
   }
 
   useEffect(() => {
@@ -59,13 +71,13 @@ function Settings({ settingsData, setReload }) {
             <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
           </label>
         </div>
-
         <button
           className="w-[150px] h-[40px] rounded-[15px] text-white bg-[#0096FF] dark:bg-[#0065AD]"
           onClick={UpdateSettings}
         >
           Save
         </button>
+        <p className='text-[#DF121B] text-[20px]'>{settingsUpdated}</p>
       </div>
     </>
   );

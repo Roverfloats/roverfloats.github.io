@@ -12,6 +12,7 @@ function NewOrEditWorld({editing}) {
     const [description, setDescription] = useState("");
     const [content, setContent] = useState("");
     const [errText, setErrText] = useState("");
+    const [sensitiveContent, setSensitiveContent] = useState(false);
 
     useEffect(() => {
         if (!worldId) return;
@@ -21,6 +22,7 @@ function NewOrEditWorld({editing}) {
             setTitle(preexistingData.title);
             setDescription(preexistingData.description);
             setContent(preexistingData.content);
+            setSensitiveContent(preexistingData.sensitiveContent);
         };
         if(worldId) fetchData();
     }, []);
@@ -53,9 +55,9 @@ function NewOrEditWorld({editing}) {
 
         var tempWorldId
         if (editing) {
-            tempWorldId = await UpdateWorld(worldId, title, description, content);
+            tempWorldId = await UpdateWorld(worldId, title, description, content, sensitiveContent);
         } else {
-            tempWorldId = await AddWorld(title, description, content);
+            tempWorldId = await AddWorld(title, description, content, sensitiveContent);
         }
 
         navigate(`/world/${tempWorldId}`);
@@ -65,6 +67,17 @@ function NewOrEditWorld({editing}) {
         <>
             <Header/>
             <div className='w-full h-auto px-[50px]'>
+                <p className='text-black dark:text-white'>Sensitive Content</p>
+                <label className={`relative inline-block w-11 h-6 cursor-pointer`}>
+                    <input
+                    type="checkbox"
+                    className="peer sr-only"
+                    onChange={(e) => setSensitiveContent(e.target.checked)}
+                    checked={sensitiveContent}
+                    />
+                    <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out dark:bg-[#D0D0D0] peer-checked:bg-[#0096FF] dark:peer-checked:bg-[#0065AD] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
+                    <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
+                </label>
                 <div className='mb-[20px] w-full'>
                     <p className='text-black dark:text-white'>Title</p>
                     <input

@@ -20,7 +20,8 @@ export async function AddStory(worldId) {
   try {
     const storyRef = await addDoc(collection(db, "Stories"), {
         worldId,
-        title: "New Story"
+        title: "New Story",
+        sensitiveContent: false
     })
     return storyRef.id
   } catch (error) {
@@ -28,12 +29,13 @@ export async function AddStory(worldId) {
   }
 }
 
-export async function UpdateStory(storyId, title, description) {
+export async function UpdateStory(storyId, title, description, sensitiveContent) {
   try {
     const storyRef = doc(db, "Stories", storyId);
     await updateDoc(storyRef, {
       title,
       description,
+      sensitiveContent
     })
   } catch (error) {
     console.error("failed to update world: ", error);

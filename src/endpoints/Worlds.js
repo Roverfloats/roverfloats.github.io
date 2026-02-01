@@ -16,12 +16,13 @@ export async function GetWorldById (worldId) {
   }
 };
 
-export async function AddWorld(title, description, content) {
+export async function AddWorld(title, description, content, sensitiveContent) {
   try {
     const worldRef = await addDoc(collection(db, "Worldbuilding"), {
       title,
       description,
       content,
+      sensitiveContent
     })
     return worldRef.id
   } catch (error) {
@@ -29,13 +30,14 @@ export async function AddWorld(title, description, content) {
   }
 }
 
-export async function UpdateWorld(worldId, title, description, content) {
+export async function UpdateWorld(worldId, title, description, content, sensitiveContent) {
   try {
     const worldRef = doc(db, "Worldbuilding", worldId);
     await updateDoc(worldRef, {
       title,
       description,
       content,
+      sensitiveContent
     })
     return worldRef.id
   } catch (error) {
