@@ -1,4 +1,4 @@
-function PageNav({pageData, highestPageNum, currentPage, setCurrentPage}) {
+function PageNav({highestPageNum, currentPage, setCurrentPage}) {
     return (
         <div className="flex w-full justify-between h-auto items-center">
             {
