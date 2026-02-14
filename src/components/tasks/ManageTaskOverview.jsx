@@ -22,6 +22,7 @@ function ManageTaskOverview({reload, setReload, setPopup, setPopupContent}) {
 
     return (
         <div className="flex-1 h-auto px-[50px] mb-[20px]">
+            <p className="text-black dark:text-white text-[25px] mt-[20px]">General Tasks</p>
             <div className="w-full h-[50px]">
                 <button
                     className="h-[30px] text-[#0096FF] dark:text-[#0065AD]"
