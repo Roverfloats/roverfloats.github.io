@@ -7,7 +7,7 @@ import { FetchData } from "../../endpoints/General";
 import { AddTask, DeleteTask } from "../../endpoints/Tasks";
 import Task from "./Task";
 
-function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
+function RecurringTaskOverview({setReload, reload, setPopup, setPopupContent}) {
     const navigate = useNavigate();
 
     const [recurringTaskData, setRecurringTaskData] = useState([]);
@@ -59,6 +59,7 @@ function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
 
     return (
         <div className="flex-1 h-auto px-[50px]">
+            <p className="text-black dark:text-white text-[25px] mt-[20px]">Daily Tasks</p>
             <div className="w-full h-[50px]">
                 <button
                     className="h-[30px] text-[#0096FF] dark:text-[#0065AD]"
@@ -67,9 +68,9 @@ function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
             </div>
             <div className="divide-solid divide-y-2 divide-[#D0D0D0] dark:divide-[black]">
                 <div>
-                    <p className="text-black dark:text-white">Today's tasks</p>
+                    <p className="text-black dark:text-white">Today's Tasks</p>
                     {
-                        recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day") && !x.invisible).map((task) => (
+                        recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day") && !x.invisible && x.presetId != "").map((task) => (
                             <Task
                                 key={task.id}
                                 taskData={task}
@@ -81,11 +82,11 @@ function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
                     }                    
                 </div>
                 {
-                recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).length != 0 ?
+                recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day") && x.presetId != "").length != 0 ?
                 <div>
                     <p className="mt-[10px] text-black dark:text-white">Missed Tasks</p>
                     {
-                        recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).map((task) => (
+                        recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day") && x.presetId != "").map((task) => (
                         <Task
                             key={task.id}
                             taskData={task}
@@ -102,4 +103,4 @@ function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
     )
 }
 
-export default TaskOverview
+export default RecurringTaskOverview
