@@ -1,8 +1,11 @@
 name: Update Tasks at Midnight
 
 on:
+  push:
+    branches:
+        - main
   schedule:
-    - cron: "44 14 * * *"   #UTC
+    - cron: "56 14 * * *"   #UTC
   workflow_dispatch:      # Allows manual run from UI
 
 jobs:
