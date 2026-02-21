@@ -1,0 +1,24 @@
+name: Update Tasks at Midnight
+
+on:
+  schedule:
+    - cron: "45 15 * * *"   # Midnight UTC
+  workflow_dispatch:      # Allows manual run from UI
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: node auto-functions/UpdateTasks.js
