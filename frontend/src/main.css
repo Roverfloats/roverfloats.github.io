@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+html,body, #root {
+    height: 100%;
+    background-color: #1f1f1f;
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+}
