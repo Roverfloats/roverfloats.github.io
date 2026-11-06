@@ -1,4 +1,4 @@
-import Conjugation from "../components/conjugation"
+import Conjugation from "../components/Conjugation"
 import Header from "../components/Header"
 import NavBar from "../components/NavBar"
 
